@@ -1,5 +1,5 @@
-import { experiments } from "webpack";
-import { testfunction, ship, gameboard, Player, Computer } from "./index";
+
+import { testfunction, ship, gameboard, Player, Computer } from "./gamemodules";
 
 test("checking if this works", () => {
   expect(testfunction()).toBe(4);
@@ -92,8 +92,10 @@ test("board function that declares if all ships are sunk", () => {
 test("user can attack computer and computer can attack user", () => {
   const PlayerOne = Player("Player");
   const ComputerOne = Computer("Player");
-  PlayerOne.placeship("Destroyer", 2, [0, 1], [0, 2]);
-  ComputerOne.placeship("Destroyer", 2, [0, 1], [0, 2]);
-  PlayerOne.attackEnemy([0, 1]);
-  expect(Computer.board.shiplist[0].hits).toBe(1);
+  PlayerOne.board.placeship("Destroyer", 2, [0, 1], [0, 2]);
+  ComputerOne.board.placeship("Destroyer", 2, [0, 1], [0, 2]);
+  PlayerOne.attackEnemy(ComputerOne, [0, 1]);
+  expect(ComputerOne.board.shiplist[0].hits).toBe(1);
+  ComputerOne.attackEnemy(PlayerOne, [0, 1], [0, 2])
+  expect(PlayerOne.board.shiplist[0].hits).toBe(1)
 });

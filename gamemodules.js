@@ -86,14 +86,17 @@ export function Player(name) {
   return {
     name: name,
     board: gameboard(name + "s board"),
-    attackEnemy: ComputerOne.board.receiveAttack(position),
-  };
+    attackEnemy: function(computer, position) {
+      computer.board.receiveAttack(position)
+    },
+  }
 }
 
 export function Computer(name) {
   return {
     name: name,
     board: gameboard(name + "s board"),
-    attackEnemy: PlayerOne.board.receiveAttack(position),
-  };
-}
+    attackEnemy: function(player, position) {
+      player.board.receiveAttack(position)
+    },
+} }
