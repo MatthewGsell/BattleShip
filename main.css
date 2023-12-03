@@ -135,7 +135,7 @@ body {
 
 #battlev {
     width: 3.75vw;
-    height: 30vw;
+    height: 30vh;
 
 }
 
@@ -145,7 +145,7 @@ body {
 }
 #submarinev {
     width: 3.75vw;
-    height: 15vh; 
+    height: 22.5vh; 
 }
 #destroyerv {
     width: 3.75vw;
@@ -166,6 +166,9 @@ body {
 }
 
 .selected {
+    background-color: #2A4D14;
+}
+.shipplaced {
     background-color: #2A4D14;
 }
 

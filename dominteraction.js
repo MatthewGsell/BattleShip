@@ -37,6 +37,9 @@ function rendergrids() {
 function dragndrop () {
     const playerships = document.querySelectorAll('.draggable')
     let n = 0
+    let highlightedgrids = document.querySelectorAll('.shiplaced')
+    console.log(highlightedgrids)
+    let newhighlightedgrids = []
     playerships[n].classList.remove('hidden')
     playerships.forEach((ship) => {
         ship.addEventListener('dragstart', (e) => {
@@ -49,6 +52,9 @@ function dragndrop () {
         ship.addEventListener('dragend', () => {
             console.log('wtf')
            let shiplength = 0
+           let canplace = true
+           const squarelist = []
+
            if(ship.id === "carrierh" || ship.id === "carrierv") {
             shiplength = 5
            }
@@ -59,21 +65,71 @@ function dragndrop () {
            } else {
             shiplength = 2
            }
-           console.log(ship.id)
            if (ship.id.slice(-1) === 'h') {
-            console.log('wtffff')
             if (coordonates.placeship[0] - shiplength >= -1 && coordonates.placeship[0] <= 7) {
+                
                 for (let i = coordonates.placeship[0] ; i > coordonates.placeship[0] - shiplength; i--) {
                     const square = document.querySelector(`#p${i}${coordonates.placeship[1]}`)
-                    square.classList.add('selected')
+                    squarelist.push(square)
+                    
+                  
                 }
+                squarelist.forEach((square) => {
+                    let hightlightedarray = Array.from(highlightedgrids)
+                    if (hightlightedarray.includes(square)) {
+                        canplace = false
+                        return
+
+                    }
+                })
+                if (canplace === true) {
+                    squarelist.forEach((square) => {
+                        square.classList.add('shipplaced')
+                    })
+                    newhighlightedgrids = document.querySelectorAll('.shipplaced')
+                    if(newhighlightedgrids.length > highlightedgrids.length) {
+        
+                        playerships[n].classList.add('hidden')
+                            console.log(n)
+                            if(n < 4) {
+                                n++
+                                playerships[n].classList.remove('hidden')
+                            }
+                        highlightedgrids = newhighlightedgrids}
+                }
+                
+           
             }
            } else if (ship.id.slice(-1) === 'v') {
             if (coordonates.placeship[1] - shiplength >= -1 && coordonates.placeship[1] <= 7) {
+                
                 for (let i = coordonates.placeship[1]; i > coordonates.placeship[1] - shiplength; i--) {
                     const square = document.querySelector(`#p${coordonates.placeship[0]}${i}`)
-                    square.classList.add('selected')
+                    squarelist.push(square)
+                    
                 }
+                squarelist.forEach((square) => {
+                    let hightlightedarray = Array.from(highlightedgrids)
+                    if (hightlightedarray.includes(square)) {
+                        canplace = false
+                        return
+
+                    }
+                })
+                if (canplace === true) {
+                    squarelist.forEach((square) => {
+                        square.classList.add('shipplaced')
+                    })
+                    newhighlightedgrids = document.querySelectorAll('.shipplaced')
+                if(newhighlightedgrids.length > highlightedgrids.length) {
+                playerships[n].classList.add('hidden')
+                console.log(n)
+                if(n < 4) {
+                    n++
+                    playerships[n].classList.remove('hidden')
+                }highlightedgrids = newhighlightedgrids}
+                }
+                
             }
            }
         
