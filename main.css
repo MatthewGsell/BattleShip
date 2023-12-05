@@ -7,8 +7,14 @@ body {
 }
 #title {
   margin: 1vh;
+  color: #DF57BC;
+  
 }
-
+h5 {
+  font-size: x-large;
+  text-align: center;
+  
+}
 #gamecontainer {
   display: flex;
   background-color: #00a7e1;
@@ -16,6 +22,7 @@ body {
   height: 90vh;
   justify-content: space-between;
   margin-bottom: 2vh;
+  border-radius: 2rem;
 }
 #playerside,
 #computerside {
@@ -88,12 +95,12 @@ body {
   height: 40vh;
   width: 20vw;
   display: flex;
-  background-color: #ffffff;
+  background-color: transparent;
   justify-content: center;
   align-items: center;
   position: absolute;
   left: 40vw;
-  top: 14vh;
+  top: 30vh;
 }
 #shipdiv > div {
   background-color: #9f7e69;
@@ -127,24 +134,30 @@ body {
 #carrierv {
   width: 3.75vw;
   height: 37.5vh;
+  writing-mode: vertical-rl;
 }
 
 #battlev {
   width: 3.75vw;
   height: 30vh;
+  writing-mode: vertical-rl;
+  
 }
 
 #cruiserv {
   width: 3.75vw;
   height: 22.5vh;
+  writing-mode: vertical-rl;
 }
 #submarinev {
   width: 3.75vw;
   height: 22.5vh;
+  writing-mode: vertical-rl;
 }
 #destroyerv {
   width: 3.75vw;
   height: 15vh;
+  writing-mode: vertical-rl;
 }
 
 .draggable {
@@ -163,19 +176,261 @@ body {
   background-color: #2a4d14;
 }
 .shipplaced {
-  background-color: #2a4d14;
+  background-color: #9f7e69;
 }
 
-.blockerdivcarrierh {
-  position: absolute;
-  height: 10vh;
-  width: 15vw;
-  bottom: 64vh;
-  right: 45vw;
-}
+
 #computergrid > .attackedlocation {
   border: 3px solid red;
 }
-.hitlocation {
-  background-color: #9f7e69;
+#playergrid > .attackedlocation {
+  border: 3px solid red;
 }
+.hitlocation {
+  background-color: rgb(223, 102, 102);
+}
+
+.displaywinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4vw;
+  background-color: #2a4d14;
+  position: absolute;
+  height: 20vh;
+  width: 40vw;
+  font-size: 5vw;
+  color: white;
+}
+
+.playagainbutton {
+  height: 6vh;
+  width: 10vw;
+  position: absolute;
+  background-color: #DF57BC;
+  color: white;
+  font-size: larger;
+  font-weight: 900;
+  border-radius: 4rem;
+  top: 65vh
+}
+
+@media (orientation: portrait) {
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #003459;
+  }
+  #title {
+    margin: 1vh;
+    color: #DF57BC;
+    
+  }
+  h5 {
+    font-size: large;
+    text-align: start;
+    margin-left: 20vw;
+    
+  }
+  #gamecontainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #00a7e1;
+    width: 95vw;
+    height: 90vh;
+    justify-content: space-between;
+    margin-bottom: 2vw;
+    border-radius: 2rem;
+  }
+  #playerside,
+  #computerside {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  #playergrid,
+  #computergrid {
+    display: grid;
+    height: 25vh;
+    width: 45vw;
+    background-color: #ffffff;
+    grid-template-columns: repeat(8, auto);
+    grid-template-rows: repeat(8, auto);
+    border: 3px solid black;
+  }
+  #computerside {
+    margin-bottom: 10vh;
+
+  }
+  
+  #playergrid > div {
+    border: 3px solid black;
+  }
+  #computergrid > div {
+    border: 3px solid black;
+  }
+  #turnbar {
+    display: flex;
+    width: 20vh;
+    height: 4vw;
+    justify-content: center;
+    margin-top: 6vh;
+  }
+  #ycor {
+    margin-right: 4vh;
+    margin-left: 0.5vh;
+    border-radius: 5px;
+  }
+  #xcor {
+    border-radius: 5px;
+  }
+  
+  #attackbutton {
+    border-radius: 10px;
+    background-color: #2a4d14;
+    color: #ffffff;
+  }
+  
+  .rulerx {
+    display: flex;
+    width: 46vw;
+    height: 4vw;
+    justify-content: space-around;
+  }
+  
+  .gridcontainer {
+    display: flex;
+  }
+  
+  .rulery {
+    display: flex;
+    flex-direction: column;
+    height: 42vw;
+    justify-content: space-around;
+  }
+  
+  #shipdiv {
+    height: 18vh;
+    width: 30vw;
+    display: flex;
+    background-color: transparentvh;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50vw;
+    top: 39vh;
+  }
+  #shipdiv > div {
+    background-color: #9f7e69;
+    text-align: center;
+    font-size: larger;
+  }
+  
+  #carrierh {
+    width: 28.125vw;
+    height: 3.125vh;
+  }
+  
+  #battleh {
+    width: 22.5vw;
+    height: 3.125vh;
+  }
+  
+  #cruiserh {
+    width: 16.875vw;
+    height: 3.125vh;
+  }
+  #submarineh {
+    width: 16.875vw;
+    height: 3.125vh;
+  }
+  #destroyerh {
+    width: 11.25vw;
+    height: 3.125vh;
+  }
+  
+  #carrierv {
+    width: 5.625vw;
+    height: 15.625vh;
+  }
+  
+  #battlev {
+    width: 5.625vw;
+    height: 12.5vh;
+  }
+  
+  #cruiserv {
+    width: 5.625vw;
+    height: 9.375vh;
+  }
+  #submarinev {
+    width: 5.625vw;
+    height: 9.375vh;
+  }
+  #destroyerv {
+    width: 5.625vw;
+    height: 6.25vh;
+  }
+  
+  .draggable {
+    cursor: move;
+  }
+  
+  .beingdragged {
+    border: 3px solid black;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .selected {
+    background-color: #2a4d14;
+  }
+  .shipplaced {
+    background-color: #9f7e69;
+  }
+  
+  
+  #computergrid > .attackedlocation {
+    border: 3px solid red;
+  }
+  #playergrid > .attackedlocation {
+    border: 3px solid red;
+  }
+  .hitlocation {
+    background-color: rgb(223, 102, 102);
+  }
+  
+  .displaywinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4vh;
+    background-color: #2a4d14;
+    position: absolute;
+    height: 20vw;
+    width: 40vh;
+    font-size: 5vw;
+    color: white;
+    bottom: 52vh;
+  }
+  
+  .playagainbutton {
+    height: 6vw;
+    width: 10vh;
+    position: absolute;
+    background-color: #DF57BC;
+    color: white;
+    font-size: larger;
+    font-weight: 900;
+    border-radius: 4rem;
+    top: 52.5vh;
+  }
+  
+}
+
+

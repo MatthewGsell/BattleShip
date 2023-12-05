@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css" />
 
-    <title>Document</title>
+    <title>Battleship</title>
     
 </head>
 <body>
-    <h1 id="title">BattleShip</h1>
-    <div id="gamecontainer"><div id="playerside"><h2 id="player">Player</h2><div class="rulerx"><p>X 0</p><p>X 1</p><p>X 2</p><p>X 3</p><p>X 4</p><p>X 5</p><p>X 6</p><p>X 7</p></div><div class="gridcontainer"><div class="rulery"><p>Y 0</p><p>Y 1</p><p>Y 2</p><p>Y 3</p><p>Y 4</p><p>Y 5</p><p>Y 6</p><p>Y 7</p></div><div id="playergrid"></div></div><div id="turnbar"><input type="number" id="xcor" placeholder="xcor" min="1" max="8"><input type="number" id="ycor" placeholder="ycor" min="1" max="8"><button id="attackbutton">Attack!</button></div></div><h5>Drag and place ship!</h5><div id="shipdiv"></p><div id="carrierh" draggable="true" class="draggable hidden">Carrier</div><div id="battleh" draggable="true" class="draggable hidden">Battleship</div><div id="cruiserh" draggable="true" class="draggable hidden">Cruiser</div><div id="submarineh" draggable="true" class="draggable hidden">Submarine</div><div id="destroyerh" draggable="true" class="draggable hidden">Destroyer</div></div><div id="computerside"><h2 id="computer">Computer</h2><div class="rulerx"><p>X 0</p><p>X 1</p><p>X 2</p><p>X 3</p><p>X 4</p><p>X 5</p><p>X 6</p><p>X 7</p></div><div class="gridcontainer"><div class="rulery"><p>Y 0</p><p>Y 1</p><p>Y 2</p><p>Y 3</p><p>Y 4</p><p>Y 5</p><p>Y 6</p><p>Y 7</p></div><div id="computergrid"></div></div></div></div>
-    <div id="blockerdivnull" class="blockerdivcarriernull"></div>
+    <h1 id="title">BattleShip!</h1>
+    <div id="gamecontainer"><div id="playerside"><h2 id="player">Player</h2><div class="rulerx"><p>X 0</p><p>X 1</p><p>X 2</p><p>X 3</p><p>X 4</p><p>X 5</p><p>X 6</p><p>X 7</p></div><div class="gridcontainer"><div class="rulery"><p>Y 0</p><p>Y 1</p><p>Y 2</p><p>Y 3</p><p>Y 4</p><p>Y 5</p><p>Y 6</p><p>Y 7</p></div><div id="playergrid"></div></div><div id="turnbar"><input type="number" id="xcor" placeholder="xcor" min="0" max="7" class="hidden"><input type="number" id="ycor" placeholder="ycor" min="0" max="7" class="hidden"><button id="attackbutton" class="hidden">Attack!</button></div></div><h5>Drag and place ship!<br>Press V to turn ship vertical.<br>Press H to return it to horizontal</h5><div id="shipdiv"></p><div id="carrierh" draggable="true" class="draggable hidden">Carrier</div><div id="battleh" draggable="true" class="draggable hidden">Battleship</div><div id="cruiserh" draggable="true" class="draggable hidden">Cruiser</div><div id="submarineh" draggable="true" class="draggable hidden">Submarine</div><div id="destroyerh" draggable="true" class="draggable hidden">Destroyer</div></div><div id="computerside"><h2 id="computer">Computer</h2><div class="rulerx"><p>X 0</p><p>X 1</p><p>X 2</p><p>X 3</p><p>X 4</p><p>X 5</p><p>X 6</p><p>X 7</p></div><div class="gridcontainer"><div class="rulery"><p>Y 0</p><p>Y 1</p><p>Y 2</p><p>Y 3</p><p>Y 4</p><p>Y 5</p><p>Y 6</p><p>Y 7</p></div><div id="computergrid"></div></div></div></div>
+    
+    <div id="winnerdiv" class="hidden"></div>
+    <button id="playagainbutton" class="hidden">Play Again!</button>
     
 
     <script type="module" src="dominteraction.js"></script>

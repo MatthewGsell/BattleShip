@@ -29,31 +29,31 @@ test("is ship sunk", () => {
 
 test("is ship placed on grid in vertical orientation", () => {
   const board = gameboard();
-  board.placeship("Carrier", 5, [0, 1], [0, 5]);
+  board.placeship("Carrier", 5, [0, 5], [0, 1]);
   expect(board.shiplist[0].coordonates).toEqual([
-    [0, 1],
-    [0, 2],
-    [0, 3],
-    [0, 4],
     [0, 5],
+    [0, 4],
+    [0, 3],
+    [0, 2],
+    [0, 1],
   ]);
 });
 
 test("is ship placed on grid in horizontal orientation", () => {
   const board = gameboard();
-  board.placeship("Carrier", 5, [1, 0], [5, 0]);
+  board.placeship("Carrier", 5, [5, 0], [1, 0]);
   expect(board.shiplist[0].coordonates).toEqual([
-    [1, 0],
-    [2, 0],
-    [3, 0],
-    [4, 0],
     [5, 0],
+    [4, 0],
+    [3, 0],
+    [2, 0],
+    [1, 0],
   ]);
 });
 
 test("did ship get hit via gameboard", () => {
   const board = gameboard();
-  board.placeship("Carrier", 5, [1, 0], [5, 0]);
+  board.placeship("Carrier", 5, [5, 0], [1, 0]);
   board.receiveAttack([3, 0]);
   board.receiveAttack([4, 0]);
   board.receiveAttack([5, 0]);
@@ -64,7 +64,7 @@ test("did ship get hit via gameboard", () => {
 
 test("does the board keep track of missed and hit shots", () => {
   const board = gameboard();
-  board.placeship("Destroyer", 2, [0, 1], [0, 2]);
+  board.placeship("Destroyer", 2, [0, 2], [0, 1]);
   board.receiveAttack([0, 1]);
   board.receiveAttack([0, 2]);
   board.receiveAttack([0, 3]);
@@ -81,11 +81,11 @@ test("does the board keep track of missed and hit shots", () => {
 
 test("board function that declares if all ships are sunk", () => {
   const board = gameboard();
-  board.placeship("Destroyer", 2, [0, 1], [0, 2]);
+  board.placeship("Destroyer", 2, [0, 2], [0, 1]);
   board.receiveAttack([0, 1]);
   board.receiveAttack([0, 2]);
   expect(board.allShipsSunk()).toBe(true);
-  board.placeship("Destroyer", 2, [0, 4], [0, 5]);
+  board.placeship("Destroyer", 2, [0, 5], [0, 4]);
   expect(board.allShipsSunk()).toBe(false);
 });
 

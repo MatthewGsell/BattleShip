@@ -5,11 +5,25 @@ import {
   Player,
   Computer,
 } from "./gamemodules.js";
-
+const playagain = document.querySelector('#playagainbutton')
+playagain.addEventListener('click', () => {
+  location.reload()
+})
 const coordonates = {
   placeship: [],
+  possiblecoordonates: [[0, 7], [1, 7], [2, 7], [3, 7], [4, 7], [5, 7], [6, 7], [7, 7],
+  [0, 6], [1, 6], [2, 6], [3, 6], [4, 6], [5, 6], [6, 6], [7, 6],
+[0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5],
+[0, 4], [1, 4], [2, 4], [3, 4], [4, 4], [5, 4], [6, 4], [7, 4],
+[0, 3], [1, 3], [2, 3], [3, 3], [4, 3], [5, 3], [6, 3], [7, 3],
+[0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [5, 2], [6, 2], [7, 2],
+[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1],
+[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0],],
   playeralreadyentered: [],
   computeralreadyentered: [],
+  computerattackstack: [],
+  shipsdropped: 0
+
 };
 
 let Playerboard = Player("Player");
@@ -36,7 +50,7 @@ function rendergrids() {
       const xcor = Number(id.charAt(1));
       const ycor = Number(id.charAt(2));
       coordonates.placeship = [xcor, ycor];
-      console.log(coordonates.placeship);
+      
     });
     playergridsquare.addEventListener("dragleave", () => {
       playergridsquare.classList.remove("selected");
@@ -53,7 +67,6 @@ function dragndrop() {
   const playerships = document.querySelectorAll(".draggable");
   let n = 0;
   let highlightedgrids = document.querySelectorAll(".shiplaced");
-  console.log(highlightedgrids);
   let newhighlightedgrids = [];
   playerships[n].classList.remove("hidden");
   playerships.forEach((ship) => {
@@ -64,7 +77,6 @@ function dragndrop() {
 
   playerships.forEach((ship) => {
     ship.addEventListener("dragend", () => {
-      console.log("wtf");
       let shiplength = 0;
       let shipname = "";
       let canplace = true;
@@ -132,13 +144,13 @@ function dragndrop() {
               shiphead,
               shiptail
             );
+            renderinputsandattackbutton()
             squarelist.forEach((square) => {
               square.classList.add("shipplaced");
             });
             newhighlightedgrids = document.querySelectorAll(".shipplaced");
             if (newhighlightedgrids.length > highlightedgrids.length) {
               playerships[n].classList.add("hidden");
-              console.log(n);
               if (n < 4) {
                 n++;
                 playerships[n].classList.remove("hidden");
@@ -191,6 +203,7 @@ function dragndrop() {
               shiphead,
               shiptail
             );
+            renderinputsandattackbutton()
 
             squarelist.forEach((square) => {
               square.classList.add("shipplaced");
@@ -198,7 +211,7 @@ function dragndrop() {
             newhighlightedgrids = document.querySelectorAll(".shipplaced");
             if (newhighlightedgrids.length > highlightedgrids.length) {
               playerships[n].classList.add("hidden");
-              console.log(n);
+            
               if (n < 4) {
                 n++;
                 playerships[n].classList.remove("hidden");
@@ -208,8 +221,10 @@ function dragndrop() {
           }
         }
       }
+      
     });
   });
+  
 }
 
 function rotateships() {
@@ -220,7 +235,7 @@ function rotateships() {
         let a = ship.id;
         let b = a.replace("h", "v");
         ship.id = b;
-        console.log(ship.id);
+        
       });
     }
   });
@@ -231,7 +246,7 @@ function rotateships() {
         let a = ship.id;
         let b = a.replace("v", "h");
         ship.id = b;
-        console.log(ship.id);
+        
       });
     }
   });
@@ -252,23 +267,25 @@ function placecomputershipswithalgorithm(
   }
 
   Computerboard.board.placeship(shipname, shiplength, shiphead, shiptail);
-  console.log("h");
-  console.log(shiphead, shiptail);
+  
 }
 
 function firethenenemyfires() {
   let xcor = parseInt(document.querySelector("#xcor").value);
   let ycor = parseInt(document.querySelector("#ycor").value);
+  let enteredbefore = false 
+  coordonates.playeralreadyentered.forEach((cor) => {
+    if (cor[0] === xcor && cor[1] === ycor) {
+      enteredbefore = true
+    }
+  })
+  
   if (
     coordonates.playeralreadyentered.length >= 1 &&
-    coordonates.playeralreadyentered[
-      coordonates.playeralreadyentered.length - 1
-    ][0] === xcor &&
-    coordonates.playeralreadyentered[
-      coordonates.playeralreadyentered.length - 1
-    ][1] === ycor
+    enteredbefore === true
+    || xcor > 7 || xcor < 0 || ycor > 7 || ycor < 0
   ) {
-    alert("Those coordonates were already attacked, try again.");
+    alert("Coordonates already attacked or coordonates are invalid. Please reference ruler above and to the side of grid for coordonates of squares.");
   } else {
     let sunkships = 0;
     let newssunkships = 0;
@@ -276,19 +293,21 @@ function firethenenemyfires() {
     let newhits = 0;
     Computerboard.board.shiplist.forEach((ship) => {
       hits = hits + ship.hits;
-      if (ship.isSunk === true) {
+      if (ship.isSunk() === true) {
         sunkships++;
       }
     });
+   
     Playerboard.attackEnemy(Computerboard, [xcor, ycor]);
     Computerboard.board.shiplist.forEach((ship) => {
       newhits = newhits + ship.hits;
-      if (ship.isSunk === true) {
+      if (ship.isSunk() === true) {
         newssunkships++;
       }
     });
 
     if (newssunkships > sunkships) {
+     
       alert("Sunk a ship!");
     }
     if (newhits > hits) {
@@ -296,11 +315,68 @@ function firethenenemyfires() {
       gridtohighlight.classList.add("attackedlocation");
       gridtohighlight.classList.add("hitlocation");
     } else {
-      console.log("ff");
       let gridtohighlight = document.querySelector(`#c${xcor}${ycor}`);
       gridtohighlight.classList.add("attackedlocation");
     }
     coordonates.playeralreadyentered.push([xcor, ycor]);
-    console.log(coordonates.playeralreadyentered);
+    checkforwin()
+    computerattacks()
+    checkforwin()
+  }
+  
+
+
+}
+
+
+function computerattacks () {
+  function randomNumber(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  let randomn = randomNumber(0, coordonates.possiblecoordonates.length - 1)
+  let computerattacks = coordonates.possiblecoordonates[randomn]
+  coordonates.computeralreadyentered.push(computerattacks)
+  coordonates.possiblecoordonates.splice(randomn, 1)
+  Computerboard.attackEnemy(Playerboard, computerattacks)
+  let gridtohighlight = document.querySelector(`#p${computerattacks[0]}${computerattacks[1]}`);
+  gridtohighlight.classList.add('attackedlocation')
+}
+
+
+function renderinputsandattackbutton () {
+  coordonates.shipsdropped++
+  if (coordonates.shipsdropped === 5) {
+    const attackbutton = document.querySelector('#attackbutton')
+    const xcor = document.querySelector('#xcor')
+    const ycor = document.querySelector('#ycor')
+    attackbutton.classList.remove('hidden')
+    xcor.classList.remove('hidden')
+    ycor.classList.remove('hidden')
+    const instructions = document.querySelector('h5')
+    instructions.classList.add('hidden')
+  }
+}
+
+
+function checkforwin() {
+  if (Playerboard.board.allShipsSunk() === true) {
+    const winnerdiv = document.querySelector('#winnerdiv')
+    const playagain = document.querySelector('#playagainbutton')
+    winnerdiv.innerHTML = "Computer Wins!"
+    winnerdiv.classList.remove('hidden')
+    winnerdiv.classList.add('displaywinner')
+    playagain.classList.remove('hidden')
+    playagain.classList.add('playagainbutton')
+  }
+  else if (Computerboard.board.allShipsSunk() === true) {
+    const winnerdiv = document.querySelector('#winnerdiv')
+    const playagain = document.querySelector('#playagainbutton')
+    winnerdiv.innerHTML = "Player Wins!"
+    winnerdiv.classList.remove('hidden')
+    winnerdiv.classList.add('displaywinner')
+    playagain.classList.remove('hidden')
+    playagain.classList.add('playagainbutton')
   }
 }

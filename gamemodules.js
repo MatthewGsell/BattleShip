@@ -11,7 +11,7 @@ export function ship(name, length) {
       this.hits++;
     },
     isSunk: function () {
-      if (this.hits >= this.length) {
+      if (this.hits === this.length) {
         return true;
       } else {
         return false;
@@ -42,11 +42,11 @@ export function gameboard(name) {
       newship.coordonates = [];
       if (shiphead[0] === shiptail[0]) {
         for (let i = 0; i < newship.length; i++) {
-          newship.coordonates.push([shiphead[0], shiphead[1] + i]);
+          newship.coordonates.push([shiphead[0], shiphead[1] - i]);
         }
       } else if (shiphead[1] === shiptail[1]) {
         for (let i = 0; i < newship.length; i++) {
-          newship.coordonates.push([shiphead[0] + i, shiphead[1]]);
+          newship.coordonates.push([shiphead[0] - i, shiphead[1]]);
         }
       }
 
