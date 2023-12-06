@@ -221,6 +221,9 @@ function dragndrop() {
           }
         }
       }
+      Computerboard.board.shiplist.forEach((ship) => {
+        console.log(ship.coordonates)
+      })
       
     });
   });
@@ -258,15 +261,12 @@ function placecomputershipswithalgorithm(
   shiphead,
   shiptail
 ) {
-  if (shiptail[0] > 0) {
-    shiphead = [shiphead[1], shiphead[0] - 1];
-    shiptail = [shiptail[1], shiptail[0]];
-  } else {
+  
     shiphead = [shiphead[1], shiphead[0]];
     shiptail = [shiptail[1], shiptail[0]];
-  }
 
   Computerboard.board.placeship(shipname, shiplength, shiphead, shiptail);
+  
   
 }
 
