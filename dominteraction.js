@@ -230,29 +230,28 @@ function dragndrop() {
   
 }
 
+
+
 function rotateships() {
   const ships = document.querySelectorAll(".draggable");
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "v") {
-      ships.forEach((ship) => {
-        let a = ship.id;
-        let b = a.replace("h", "v");
-        ship.id = b;
-        
-      });
-    }
-  });
-
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "h") {
-      ships.forEach((ship) => {
+  const rotatebutton = document.querySelector('#rotatebutton')
+  rotatebutton.addEventListener('click', () => {
+    console.log('cbhsdjkbc')
+    ships.forEach((ship) => {
+      if (ship.id.slice(-1) === "h") {
+      let a = ship.id;
+      let b = a.replace("h", "v");
+      ship.id = b;
+      } else {
         let a = ship.id;
         let b = a.replace("v", "h");
         ship.id = b;
-        
-      });
-    }
-  });
+      }
+      
+      
+    });
+  })
+  
 }
 
 function placecomputershipswithalgorithm(
@@ -354,7 +353,7 @@ function renderinputsandattackbutton () {
     attackbutton.classList.remove('hidden')
     xcor.classList.remove('hidden')
     ycor.classList.remove('hidden')
-    const instructions = document.querySelector('h5')
+    const instructions = document.querySelector('#instructions')
     instructions.classList.add('hidden')
   }
 }

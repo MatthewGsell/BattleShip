@@ -18,8 +18,8 @@ h5 {
 #gamecontainer {
   display: flex;
   background-color: #00a7e1;
-  width: 95vw;
-  height: 90vh;
+  width: 95%;
+  min-height: 900px;
   justify-content: space-between;
   margin-bottom: 2vh;
   border-radius: 2rem;
@@ -37,12 +37,18 @@ h5 {
 #playergrid,
 #computergrid {
   display: grid;
-  height: 60vh;
-  width: 30vw;
+  height: 100%;
+  width: 100%;
   background-color: #ffffff;
   grid-template-columns: repeat(8, auto);
   grid-template-rows: repeat(8, auto);
   border: 3px solid black;
+}
+.gridcontainer {
+  width: 90%;
+}
+#computerside, #playerside {
+  width: 40%;
 }
 
 #playergrid > div {
@@ -71,11 +77,12 @@ h5 {
   border-radius: 10px;
   background-color: #2a4d14;
   color: #ffffff;
+  transition: all .5s ease-in-out;
 }
 
 .rulerx {
   display: flex;
-  width: 30vw;
+  width: 90%;
   height: 4vh;
   justify-content: space-around;
 }
@@ -109,54 +116,54 @@ h5 {
 }
 
 #carrierh {
-  width: 18.75vw;
-  height: 7.5vh;
+  width: 100%;
+  height: 20%;
 }
 
 #battleh {
-  width: 15vw;
-  height: 7.5vh;
+  width: 80%;
+  height: 20%;
 }
 
 #cruiserh {
-  width: 11.25vw;
-  height: 7.5vh;
+  width: 60%;
+  height: 20%;
 }
 #submarineh {
-  width: 11.25vw;
-  height: 7.5vh;
+  width: 60%;
+  height: 20%;
 }
 #destroyerh {
-  width: 7.5vw;
-  height: 7.5vh;
+  width: 40%;
+  height: 20%;
 }
 
 #carrierv {
-  width: 3.75vw;
-  height: 37.5vh;
+  width: 20%;
+  height: 100%;
   writing-mode: vertical-rl;
 }
 
 #battlev {
-  width: 3.75vw;
-  height: 30vh;
+  width: 20%;
+  height: 80%;
   writing-mode: vertical-rl;
   
 }
 
 #cruiserv {
-  width: 3.75vw;
-  height: 22.5vh;
+  width: 20%;
+  height: 60%;
   writing-mode: vertical-rl;
 }
 #submarinev {
-  width: 3.75vw;
-  height: 22.5vh;
+  width: 20%;
+  height: 60%;
   writing-mode: vertical-rl;
 }
 #destroyerv {
-  width: 3.75vw;
-  height: 15vh;
+  width: 20%;
+  height: 40%;
   writing-mode: vertical-rl;
 }
 
@@ -215,222 +222,64 @@ h5 {
   top: 65vh
 }
 
-@media (orientation: portrait) {
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #003459;
-  }
-  #title {
-    margin: 1vh;
-    color: #DF57BC;
-    
-  }
-  h5 {
-    font-size: large;
-    text-align: start;
-    margin-left: 20vw;
-    
-  }
-  #gamecontainer {
-    display: flex;
-    flex-direction: column;
-    background-color: #00a7e1;
-    width: 95vw;
-    height: 90vh;
-    justify-content: space-between;
-    margin-bottom: 2vw;
-    border-radius: 2rem;
-  }
-  #playerside,
-  #computerside {
-    display: flex;
-    align-items: center;
-    
-  }
-  
-  #playergrid,
-  #computergrid {
-    display: grid;
-    height: 25vh;
-    width: 45vw;
-    background-color: #ffffff;
-    grid-template-columns: repeat(8, auto);
-    grid-template-rows: repeat(8, auto);
-    border: 3px solid black;
-  }
-  #computerside {
-    margin-bottom: 10vh;
-
-  }
-  
-  #playergrid > div {
-    border: 3px solid black;
-  }
-  #computergrid > div {
-    border: 3px solid black;
-  }
-  #turnbar {
-    display: flex;
-    width: 20vh;
-    height: 4vw;
-    justify-content: center;
-    margin-top: 6vh;
-  }
-  #ycor {
-    margin-right: 4vh;
-    margin-left: 0.5vh;
-    border-radius: 5px;
-  }
-  #xcor {
-    border-radius: 5px;
-  }
-  
-  #attackbutton {
-    border-radius: 10px;
-    background-color: #2a4d14;
-    color: #ffffff;
-  }
-  
-  .rulerx {
-    display: flex;
-    width: 46vw;
-    height: 4vw;
-    justify-content: space-around;
-  }
-  
-  .gridcontainer {
-    display: flex;
-  }
-  
-  .rulery {
-    display: flex;
-    flex-direction: column;
-    height: 42vw;
-    justify-content: space-around;
-  }
-  
-  #shipdiv {
-    height: 18vh;
-    width: 30vw;
-    display: flex;
-    background-color: transparentvh;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 50vw;
-    top: 39vh;
-  }
-  #shipdiv > div {
-    background-color: #9f7e69;
-    text-align: center;
-    font-size: larger;
-  }
-  
-  #carrierh {
-    width: 28.125vw;
-    height: 3.125vh;
-  }
-  
-  #battleh {
-    width: 22.5vw;
-    height: 3.125vh;
-  }
-  
-  #cruiserh {
-    width: 16.875vw;
-    height: 3.125vh;
-  }
-  #submarineh {
-    width: 16.875vw;
-    height: 3.125vh;
-  }
-  #destroyerh {
-    width: 11.25vw;
-    height: 3.125vh;
-  }
-  
-  #carrierv {
-    width: 5.625vw;
-    height: 15.625vh;
-  }
-  
-  #battlev {
-    width: 5.625vw;
-    height: 12.5vh;
-  }
-  
-  #cruiserv {
-    width: 5.625vw;
-    height: 9.375vh;
-  }
-  #submarinev {
-    width: 5.625vw;
-    height: 9.375vh;
-  }
-  #destroyerv {
-    width: 5.625vw;
-    height: 6.25vh;
-  }
-  
-  .draggable {
-    cursor: move;
-  }
-  
-  .beingdragged {
-    border: 3px solid black;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  .selected {
-    background-color: #2a4d14;
-  }
-  .shipplaced {
-    background-color: #9f7e69;
-  }
-  
-  
-  #computergrid > .attackedlocation {
-    border: 3px solid red;
-  }
-  #playergrid > .attackedlocation {
-    border: 3px solid red;
-  }
-  .hitlocation {
-    background-color: rgb(223, 102, 102);
-  }
-  
-  .displaywinner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4vh;
-    background-color: #2a4d14;
-    position: absolute;
-    height: 20vw;
-    width: 40vh;
-    font-size: 5vw;
-    color: white;
-    bottom: 52vh;
-  }
-  
-  .playagainbutton {
-    height: 6vw;
-    width: 10vh;
-    position: absolute;
-    background-color: #DF57BC;
-    color: white;
-    font-size: larger;
-    font-weight: 900;
-    border-radius: 4rem;
-    top: 52.5vh;
-  }
+#instructions {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  left: 43%;
+  right: 43%;
+  text-align: center;
+}
+#rotatebutton:hover {
+  cursor: pointer;
   
 }
+button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
 
+#instructions.hidden {
+  display: none;
+}
 
+@media only screen and (max-width: 1200px) {
+  #gamecontainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  #computergrid, #playergrid {
+    height: 800px;
+  }
+  #computerside, #playerside {
+    width: 90%;
+  }
+  #computergrid {
+    margin-bottom: 80px;
+  }
+  .rulerx {width: 90%;}
+  .rulery {
+    height: 800px;
+  }
+  #shipdiv {
+    top: 50%;
+    width: 50%;
+    height: 500px;
+    left: 26%;
+  }
+  #instructions {
+    position: unset;
+    margin-top: 200px
+  }
+} 
+@media only screen and (max-width: 500px) {
+  #shipdiv {
+    top: 90%;
+    width: 50%;
+    height: 500px;
+    left: 26%;
+  }
+}
